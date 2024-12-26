@@ -105,5 +105,5 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   document.getElementById("Resume").addEventListener("click", function (){
-    window.open("https://drive.google.com/file/d/1-VnDPAoO4F8gbpsABwwDltvLJyvtb95f/view?usp=sharing", "_blank");
+    window.open("https://drive.google.com/file/d/1E3Idq4zfs7xQDc5hiohXUacj5LCi82Nk/view?usp=sharing", "_blank");
   });
