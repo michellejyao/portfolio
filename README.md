@@ -1,2 +1,1 @@
-# michelle-website
-my portfolio/website :)
+# My Portolio

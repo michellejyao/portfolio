@@ -105,5 +105,5 @@ document.getElementById("who-am-i").addEventListener("click", function () {
 });
 
 document.getElementById("Resume").addEventListener("click", function (){
-  window.open("https://drive.google.com/file/d/1E3Idq4zfs7xQDc5hiohXUacj5LCi82Nk/view?usp=sharing", "_blank");
+  window.open("https://drive.google.com/file/d/1VAeilANVdtjHnsHgdhaasMxovCOKJ5jK/view?usp=sharing", "_blank");
 });
