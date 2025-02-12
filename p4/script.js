@@ -59,11 +59,11 @@ document.getElementById("WAT_AI").addEventListener("click", function (){
 });
 
 document.getElementById("DG").addEventListener("click", function (){
-    window.open("https://drive.google.com/file/d/1-VnDPAoO4F8gbpsABwwDltvLJyvtb95f/view?usp=sharing", "_blank");
+    window.open("https://drive.google.com/file/d/1VAeilANVdtjHnsHgdhaasMxovCOKJ5jK/view?usp=sharing", "_blank");
 });
 
 document.getElementById("AI_agents").addEventListener("click", function (){
-    window.open("https://drive.google.com/file/d/1-VnDPAoO4F8gbpsABwwDltvLJyvtb95f/view?usp=sharing", "_blank");
+    window.open("https://github.com/michellejyao/TaskMind-AI", "_blank");
 });
 
 document.getElementById("Lucy").addEventListener("click", function (){
@@ -71,7 +71,7 @@ document.getElementById("Lucy").addEventListener("click", function (){
 });
 
 document.getElementById("Job_Hunter").addEventListener("click", function (){
-    window.open("https://drive.google.com/file/d/1-VnDPAoO4F8gbpsABwwDltvLJyvtb95f/view?usp=sharing", "_blank");
+    window.open("https://github.com/michellejyao/Job-Hunter", "_blank");
 });
 
 document.getElementById("Medifly").addEventListener("click", function (){
@@ -83,5 +83,5 @@ document.getElementById("Me").addEventListener("click", function (){
 });
 
 document.getElementById("my_resume").addEventListener("click", function (){
-    window.open("https://drive.google.com/file/d/1-VnDPAoO4F8gbpsABwwDltvLJyvtb95f/view?usp=sharing", "_blank");
+    window.open("https://drive.google.com/file/d/1VAeilANVdtjHnsHgdhaasMxovCOKJ5jK/view?usp=sharing", "_blank");
 });
