@@ -59,7 +59,7 @@ document.getElementById("WAT_AI").addEventListener("click", function (){
 });
 
 document.getElementById("DG").addEventListener("click", function (){
-    window.open("https://drive.google.com/file/d/1VAeilANVdtjHnsHgdhaasMxovCOKJ5jK/view?usp=sharing", "_blank");
+    window.open("", "_blank");
 });
 
 document.getElementById("AI_agents").addEventListener("click", function (){
@@ -83,5 +83,5 @@ document.getElementById("Me").addEventListener("click", function (){
 });
 
 document.getElementById("my_resume").addEventListener("click", function (){
-    window.open("https://drive.google.com/file/d/1VAeilANVdtjHnsHgdhaasMxovCOKJ5jK/view?usp=sharing", "_blank");
+    window.open("", "_blank");
 });
