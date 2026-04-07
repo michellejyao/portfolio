@@ -6,10 +6,16 @@
   
   html,
   body {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
     background: #ebdc0b;
+  }
+
+  .intro-viewport {
+    position: relative;
+    min-height: 100vh;
   }
   
   img {
@@ -100,26 +106,52 @@
   nav {
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
     display: flex;
-    padding: 2em;
+    align-items: center;
+    padding: 1.5em 2em;
+    z-index: 100;
+    transition: background 0.35s ease;
   }
-  
+
   nav > div {
-    flex: 1;
     font-family: "Timmons NY";
     font-size: 36px;
     font-weight: lighter;
     color: #ebdc0b;
     text-transform: uppercase;
+    transition: color 0.35s ease;
   }
-  
-  .site-info {
-    text-align: center;
+
+  nav.nav-scrolled {
+    background: #ebdc0b;
   }
-  
-  .menu {
-    text-align: right;
+
+  nav.nav-scrolled > div,
+  nav.nav-scrolled .nav-right span {
+    color: #000;
+  }
+
+  #Resume {
+    cursor: pointer;
+    flex: 1;
+  }
+
+  .nav-right {
+    display: flex;
+    gap: 1.75em;
+    align-items: center;
+  }
+
+  .nav-right span {
+    font-family: "Timmons NY";
+    font-size: 36px;
+    font-weight: lighter;
+    color: #ebdc0b;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 0.35s ease;
   }
   
   .header {
@@ -143,12 +175,114 @@
     top: 400px;
   }
 
-  #Resume {
-    cursor: pointer;
+  .projects-section {
+    position: relative;
+    z-index: 3;
+    padding: 8em 0 5em;
+    background: #ebdc0b;
   }
 
-  #who-am-i {
-    cursor: pointer;
+  .projects-heading {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "PP Neue World", serif;
+    font-size: clamp(3rem, 11vw, 5.75rem);
+    font-weight: 200;
+    color: #000;
+    margin-bottom: 0.65em;
+    clip-path: none;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+    gap: 1.25rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2em;
+    position: relative;
+    overflow: visible;
+  }
+
+  .project-card {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #000;
+    color: #ebdc0b;
+    text-decoration: none;
+    border: 2px solid #000;
+    transform-origin: center center;
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1), z-index 0s linear 0s;
+    z-index: 1;
+  }
+
+  .project-card img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    clip-path: none;
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), filter 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .project-card:hover img,
+  .project-card:focus-visible img {
+    transform: scale(1.08);
+    filter: brightness(0.55);
+  }
+
+  .project-card-title {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0.65em 0.85em;
+    font-family: "Timmons NY", sans-serif;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+    z-index: 2;
+  }
+
+  .project-card-details {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 50%;
+    padding: 1.1rem 1rem;
+    display: flex;
+    align-items: center;
+    font-family: "Timmons NY", sans-serif;
+    font-size: 0.94rem;
+    line-height: 1.4;
+    color: #ebdc0b;
+    background: rgba(0, 0, 0, 0.94);
+    transform: translateX(105%);
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .project-card:focus-visible {
+    outline: 2px solid #ebdc0b;
+    outline-offset: 2px;
+  }
+
+  .project-card:hover,
+  .project-card:focus-visible {
+    transform: scale(2);
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.35);
+    z-index: 20;
+  }
+
+  .project-card:hover .project-card-details,
+  .project-card:focus-visible .project-card-details {
+    transform: translateX(0);
   }
   
   @media (max-width: 900px) {
@@ -169,6 +303,20 @@
     .offset {
       position: relative;
       right: -5px;
+    }
+
+    .projects-section {
+      padding-top: 6.5em;
+    }
+
+    .project-card:hover,
+    .project-card:focus-visible {
+      transform: scale(1.28);
+    }
+
+    .project-card-details {
+      width: 62%;
+      font-size: 0.84rem;
     }
   }
   

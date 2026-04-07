@@ -99,11 +99,31 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// function listens for the click event on the text
-document.getElementById("who-am-i").addEventListener("click", function () {
-  window.open("./p4/p4.html", "_blank");
-});
-
-document.getElementById("Resume").addEventListener("click", function (){
+document.getElementById("Resume").addEventListener("click", function () {
   window.open("", "_blank");
 });
+
+document.getElementById("about-me-link").addEventListener("click", function () {
+  window.location.href = "./about.html";
+});
+
+document.getElementById("projects-link").addEventListener("click", function () {
+  document.getElementById("projects").scrollIntoView({ behavior: "smooth" });
+});
+
+// Toggle nav background when user scrolls past the hero viewport
+(function () {
+  const nav = document.getElementById("main-nav");
+  const heroHeight = window.innerHeight;
+
+  function updateNav() {
+    if (window.scrollY > heroHeight * 0.75) {
+      nav.classList.add("nav-scrolled");
+    } else {
+      nav.classList.remove("nav-scrolled");
+    }
+  }
+
+  window.addEventListener("scroll", updateNav, { passive: true });
+  updateNav();
+})();
