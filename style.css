@@ -178,7 +178,7 @@
   .projects-section {
     position: relative;
     z-index: 3;
-    padding: 8em 0 5em;
+    padding: 8em 0 8em;
     background: #ebdc0b;
   }
 
@@ -208,14 +208,22 @@
     position: relative;
     display: block;
     aspect-ratio: 4 / 3;
-    overflow: hidden;
+    overflow: visible;          /* allows panel to extend outside the card */
     background: #000;
     color: #ebdc0b;
     text-decoration: none;
     border: 2px solid #000;
     transform-origin: center center;
-    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1), z-index 0s linear 0s;
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1);
     z-index: 1;
+    will-change: transform;
+  }
+
+  /* clips the image (and title) to the card's visible boundary */
+  .card-img-wrap {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
   }
 
   .project-card img {
@@ -225,13 +233,14 @@
     height: 100%;
     object-fit: cover;
     clip-path: none;
-    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), filter 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    filter: grayscale(1);
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), filter 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .project-card:hover img,
   .project-card:focus-visible img {
-    transform: scale(1.08);
-    filter: brightness(0.55);
+    transform: scale(1.06);
+    filter: grayscale(0) brightness(0.85);
   }
 
   .project-card-title {
@@ -248,13 +257,14 @@
     z-index: 2;
   }
 
+  /* panel lives outside the card, anchored to its right edge */
   .project-card-details {
     position: absolute;
     top: 0;
-    right: 0;
+    left: 100%;              /* starts flush with the card's right edge */
     height: 100%;
-    width: 50%;
-    padding: 1.1rem 1rem;
+    width: 65%;
+    padding: 1.1rem 1.2rem;
     display: flex;
     align-items: center;
     font-family: "Timmons NY", sans-serif;
@@ -262,8 +272,10 @@
     line-height: 1.4;
     color: #ebdc0b;
     background: rgba(0, 0, 0, 0.94);
-    transform: translateX(105%);
-    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateX(-16px);  /* starts slightly tucked behind right edge */
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity   0.5s cubic-bezier(0.22, 1, 0.36, 1);
     z-index: 3;
     pointer-events: none;
   }
@@ -275,7 +287,7 @@
 
   .project-card:hover,
   .project-card:focus-visible {
-    transform: scale(2);
+    transform: scale(1.55);
     box-shadow: 0 24px 50px rgba(0, 0, 0, 0.35);
     z-index: 20;
   }
@@ -283,6 +295,7 @@
   .project-card:hover .project-card-details,
   .project-card:focus-visible .project-card-details {
     transform: translateX(0);
+    opacity: 1;
   }
   
   @media (max-width: 900px) {
@@ -311,12 +324,137 @@
 
     .project-card:hover,
     .project-card:focus-visible {
-      transform: scale(1.28);
+      transform: scale(1.15);
     }
 
     .project-card-details {
       width: 62%;
       font-size: 0.84rem;
+    }
+  }
+
+  /* ── Footer ─────────────────────────────────────────── */
+
+  .site-footer {
+    background: #0a0a0a;
+    color: #ebdc0b;
+    padding: 5em 2em 2.5em;
+    position: relative;
+    z-index: 4;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-top {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2em;
+    margin-bottom: 2.5em;
+    flex-wrap: wrap;
+  }
+
+  .footer-heading {
+    font-family: "PP Neue World", serif;
+    font-size: clamp(3.2rem, 9vw, 7rem);
+    font-weight: 200;
+    color: #ebdc0b;
+    text-transform: uppercase;
+    line-height: 0.92;
+    clip-path: none;
+  }
+
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1.1em;
+    align-self: flex-end;
+  }
+
+  .footer-email {
+    font-family: "Timmons NY", sans-serif;
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    color: #ebdc0b;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    border-bottom: 1px solid rgba(235, 220, 11, 0.35);
+    padding-bottom: 0.2em;
+    transition: border-color 0.25s ease;
+    white-space: nowrap;
+  }
+
+  .footer-email:hover {
+    border-color: #ebdc0b;
+  }
+
+  .footer-icons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .footer-icons a {
+    display: block;
+    line-height: 0;
+  }
+
+  .footer-icon {
+    /* override the global img ruleset */
+    position: static !important;
+    width: 45px !important;
+    height: 45px !important;
+    object-fit: contain !important;
+    clip-path: none !important;
+    /* B&W: desaturate then invert so they show white on the dark footer */
+    filter: grayscale(1) invert(1);
+    opacity: 0.6;
+    transition: opacity 0.25s ease;
+  }
+
+  .footer-icons a:hover .footer-icon {
+    opacity: 1;
+  }
+
+  .footer-divider {
+    height: 1px;
+    background: rgba(235, 220, 11, 0.18);
+    margin-bottom: 2em;
+  }
+
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1em;
+  }
+
+  .footer-copy {
+    font-family: "Timmons NY", sans-serif;
+    font-size: 0.95rem;
+    color: rgba(235, 220, 11, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 640px) {
+    .footer-top {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .footer-contact {
+      align-items: flex-start;
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
     }
   }
   

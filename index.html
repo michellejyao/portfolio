@@ -11,6 +11,7 @@
         <nav id="main-nav">
             <div id="Resume">My Resume</div>
             <div class="nav-right">
+                <span id="experience-link">Experience</span>
                 <span id="projects-link">Projects</span>
                 <span id="about-me-link">About Me</span>
             </div>
@@ -62,7 +63,6 @@
                 <img src="./assets/dgoggles.jpg" alt="">
                 <img src="./assets/dittopokemon.jpg" alt="">
                 <img src="./assets/medifly.jpg" alt="">
-                <img src="./assets/ecoscoreteam.jpg" alt="">
                 <img src="./assets/lucybooth.jpeg" alt="">
                 <img src="./assets/banffstar.jpg" alt="">
             </div>
@@ -77,47 +77,75 @@
             <h2 class="projects-heading" id="projects-heading">My Work</h2>
             <div class="projects-grid">
                 <a class="project-card" href="https://devpost.com/software/lucy-0v6lpm">
-                    <img src="./assets/lucybooth.jpeg" alt="Lucy" width="800" height="600" loading="lazy" />
+                    <div class="card-img-wrap"><img src="./assets/lucybooth.jpeg" alt="Lucy" width="800" height="600" loading="lazy" /></div>
                     <span class="project-card-title">Lucy</span>
                     <span class="project-card-details">First Place Winner at Miami Hack Week. Accessibility in the form of an AI-powered robotic service bunny companion to guide the visually impaired.</span>
                 </a>
                 <a class="project-card" href="https://devpost.com/software/minime-emausw">
-                    <img src="./assets/dittopokemon.jpg" alt="ditto" width="800" height="600" loading="lazy" />
+                    <div class="card-img-wrap"><img src="./assets/dittopokemon.jpg" alt="ditto" width="800" height="600" loading="lazy" /></div>
                     <span class="project-card-title">ditto</span>
                     <span class="project-card-details">A persistent digital twin that evolves with you through your memories and experiences.</span>
                 </a>
                 <a class="project-card" href="https://github.com/michellejyao/rl_badminton">
-                    <img src="./assets/rlbadminton.png" alt="RL Badminton" width="800" height="600" loading="lazy" />
+                    <div class="card-img-wrap"><img src="./assets/rlbadminton.png" alt="RL Badminton" width="800" height="600" loading="lazy" /></div>
                     <span class="project-card-title">RL Badminton</span>
                     <span class="project-card-details">Reinforcement learning experiments for badminton strategy, training agents through iterative simulation.</span>
                 </a>
-                <a class="project-card" href="">
-                    <img src="./assets/dgoggles.jpg" alt="Difference Goggles" width="800" height="600" loading="lazy" />
-                    <span class="project-card-title">Difference Goggles</span>
-                    <span class="project-card-details">Helping athletes improve reaction time and hand-eye coordination.</span>
+                <a class="project-card" href="https://github.com/michellejyao/desk_cleaner_assistant">
+                    <div class="card-img-wrap"><img src="./assets/deskassistant.png" alt="Desk Assistant" width="800" height="600" loading="lazy" /></div>
+                    <span class="project-card-title">Desk Assistant</span>
+                    <span class="project-card-details">Robotic arm that cleans up your desk and reminds you to take breaks.</span>
                 </a>
                 <a class="project-card" href="https://devpost.com/software/ecoscore-zh63x0">
-                    <img src="./assets/ecoscorepage.png" alt="ecoscore" width="800" height="600" loading="lazy" />
+                    <div class="card-img-wrap"><img src="./assets/ecoscorepage.png" alt="ecoscore" width="800" height="600" loading="lazy" /></div>
                     <span class="project-card-title">ecoscore</span>
                     <span class="project-card-details">Best Use of Solana at ElleHacks 2026. Sustainability scoring app that helps people understand product impact and compare greener choices quickly.</span>
                 </a>
                 <a class="project-card" href="https://devpost.com/software/medifly">
-                    <img src="./assets/medifly.jpg" alt="Medifly" width="800" height="600" loading="lazy" />
+                    <div class="card-img-wrap"><img src="./assets/medifly.jpg" alt="Medifly" width="800" height="600" loading="lazy" /></div>
                     <span class="project-card-title">Medifly</span>
                     <span class="project-card-details">Second Place Winner at Hack the 6ix. Healthcare drone delivery enabling quick and efficient obtainment of pharmaceuticals.</span>
                 </a>
                 <a class="project-card" href="https://github.com/WAT-ai/SatML">
-                    <img src="./assets/watai.jpg" alt="WAT AI" width="800" height="600" loading="lazy" />
+                    <div class="card-img-wrap"><img src="./assets/watai.jpg" alt="WAT AI" width="800" height="600" loading="lazy" /></div>
                     <span class="project-card-title">WAT AI</span>
                     <span class="project-card-details">Methane plume detection in hyper-spectral satellite images.</span>
                 </a>
                 <a class="project-card" href="https://devpost.com/software/myhealth-9w0mc1">
-                    <img src="./assets/soma.png" alt="Soma" width="800" height="600" loading="lazy" />
+                    <div class="card-img-wrap"><img src="./assets/soma.png" alt="Soma" width="800" height="600" loading="lazy" /></div>
                     <span class="project-card-title">Soma</span>
                     <span class="project-card-details">Turning the human body into something you can track, understand, and learn from. An interface between humans and their own health.</span>
                 </a>
+                <a class="project-card" href="">
+                    <div class="card-img-wrap"><img src="./assets/dgoggles.jpg" alt="Difference Goggles" width="800" height="600" loading="lazy" /></div>
+                    <span class="project-card-title">Difference Goggles</span>
+                    <span class="project-card-details">Helping athletes improve reaction time and hand-eye coordination.</span>
+                </a>
             </div>
         </section>
+
+        <footer class="site-footer">
+            <div class="footer-inner">
+                <div class="footer-top">
+                    <h2 class="footer-heading">Let's work<br>together.</h2>
+                    <div class="footer-contact">
+                        <a class="footer-email" href="mailto:itsmichelle.j.y@gmail.com">itsmichelle.j.y@gmail.com</a>
+                        <div class="footer-icons">
+                            <a href="https://www.linkedin.com/in/michellejyao/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                                <img class="footer-icon" src="./assets/LinkedIn.png" alt="LinkedIn" />
+                            </a>
+                            <a href="https://github.com/michellejyao" target="_blank" rel="noopener" aria-label="GitHub">
+                                <img class="footer-icon" src="./assets/github.png" alt="GitHub" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-divider"></div>
+                <div class="footer-bottom">
+                    <span class="footer-copy">© 2026 Michelle Yao</span>
+                </div>
+            </div>
+        </footer>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
         <script src="./script.js"></script>
