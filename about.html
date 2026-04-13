@@ -6,14 +6,565 @@
     <title>About Me – Michelle Yao</title>
     <link rel="icon" href="assets/smileyface.jpg" type="image/jpeg" />
     <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
+      /* ── Reset & base ─────────────────────────────── */
+      *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
       html, body {
         width: 100%;
         min-height: 100vh;
         background: #ebdc0b;
+        overflow-x: hidden;
+        font-family: "Timmons NY", sans-serif;
+        color: #000;
+      }
+
+      /* ── Nav ──────────────────────────────────────── */
+      .about-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.4em 2em;
+        z-index: 100;
+        background: #ebdc0b;
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+      }
+
+      .about-nav a {
+        font-family: "Timmons NY", sans-serif;
+        font-size: 1.5rem;
+        font-weight: lighter;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: #000;
+        letter-spacing: 0.02em;
+        transition: opacity 0.2s;
+      }
+
+      .about-nav a:hover { opacity: 0.5; }
+
+      /* ── Hero: photo + name ────────────────────────── */
+      .about-hero {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        min-height: 100vh;
+        padding-top: 80px; /* nav offset */
+      }
+
+      .hero-photo {
+        position: relative;
+        overflow: hidden;
+        background: #000;
+        min-height: 60vh;
+      }
+
+      .hero-photo img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        display: block;
+        /* undo the global portfolio clip-path */
+        clip-path: none !important;
+      }
+
+      .hero-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 3em 2.5em;
+        background: #ebdc0b;
+      }
+
+      .hero-label {
+        font-family: "Timmons NY", sans-serif;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        opacity: 0.5;
+        margin-bottom: 0.6em;
+      }
+
+      .hero-name {
+        font-family: "PP Neue World", serif;
+        font-size: clamp(3.5rem, 7vw, 6.5rem);
+        font-weight: 200;
+        text-transform: uppercase;
+        line-height: 0.92;
+        color: #000;
+        margin-bottom: 1.2em;
+      }
+
+      .hero-tagline {
+        font-family: "Timmons NY", sans-serif;
+        font-size: clamp(1rem, 1.8vw, 1.3rem);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        line-height: 1.55;
+        opacity: 0.75;
+        max-width: 380px;
+        border-left: 2px solid #000;
+        padding-left: 1em;
+      }
+
+      /* ── About body ───────────────────────────────── */
+      .about-body {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 7em 2em 5em;
+      }
+
+      .section-label {
+        font-size: 0.82rem;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        opacity: 0.45;
+        margin-bottom: 1.2em;
+      }
+
+      .about-intro {
+        font-family: "PP Neue World", serif;
+        font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+        font-weight: 200;
+        line-height: 1.35;
+        color: #000;
+        margin-bottom: 3em;
+      }
+
+      .interests-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1px;
+        border: 1px solid #000;
+        margin-bottom: 6em;
+      }
+
+      .interest-item {
+        padding: 1.5em 1.4em;
+        border: 1px solid #000;
+        display: flex;
+        flex-direction: column;
+        gap: 0.4em;
+        background: #ebdc0b;
+        transition: background 0.25s ease, color 0.25s ease;
+        cursor: default;
+      }
+
+      .interest-item:hover {
+        background: #000;
+        color: #ebdc0b;
+      }
+
+      .interest-icon {
+        font-size: 1.6rem;
+        margin-bottom: 0.2em;
+      }
+
+      .interest-name {
+        font-family: "PP Neue World", serif;
+        font-size: 1.05rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      .interest-desc {
+        font-size: 0.82rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        opacity: 0.55;
+        line-height: 1.4;
+      }
+
+      .interest-item:hover .interest-desc {
+        opacity: 0.75;
+      }
+
+      /* ── Divider ──────────────────────────────────── */
+      .section-divider {
+        border: none;
+        border-top: 1px solid rgba(0,0,0,0.15);
+        margin: 0 0 5em;
+      }
+
+      /* ── 2T1L game ────────────────────────────────── */
+      .game-section {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 2em 8em;
+      }
+
+      .game-header {
+        margin-bottom: 2.5em;
+      }
+
+      .game-title {
+        font-family: "PP Neue World", serif;
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        font-weight: 200;
+        text-transform: uppercase;
+        line-height: 0.95;
+        margin-bottom: 0.5em;
+      }
+
+      .game-subtitle {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        opacity: 0.5;
+      }
+
+      .game-instruction {
+        margin-bottom: 2.5em;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        line-height: 1.5;
+        opacity: 0.65;
+        max-width: 520px;
+      }
+
+      .statements {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 2em;
+      }
+
+      .statement-btn {
+        position: relative;
+        width: 100%;
+        padding: 1.6em 2em;
+        background: #000;
+        color: #ebdc0b;
+        border: 2px solid #000;
+        font-family: "Timmons NY", sans-serif;
+        font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+        text-align: left;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        line-height: 1.45;
+        cursor: pointer;
+        transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease;
+        overflow: hidden;
+      }
+
+      .statement-btn::after {
+        content: "→";
+        position: absolute;
+        right: 1.8em;
+        top: 50%;
+        transform: translateY(-50%) translateX(8px);
+        opacity: 0;
+        transition: opacity 0.25s ease, transform 0.25s ease;
+      }
+
+      .statement-btn:hover::after {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+      }
+
+      .statement-btn:hover:not(:disabled) {
+        background: #ebdc0b;
+        color: #000;
+        border-color: #000;
+        transform: translateY(-2px);
+      }
+
+      .statement-btn:disabled { cursor: not-allowed; }
+
+      /* result states */
+      .statement-btn.correct {
+        background: #000;
+        color: #ebdc0b;
+        border-color: #ebdc0b;
+        outline: 3px solid #ebdc0b;
+        outline-offset: 2px;
+        transform: none;
+      }
+
+      .statement-btn.wrong {
+        background: #fff;
+        color: #000;
+        border-color: #000;
+        opacity: 0.5;
+        transform: none;
+      }
+
+      .statement-btn.reveal-truth {
+        background: #000;
+        color: rgba(235,220,11,0.4);
+        border-color: #000;
+        transform: none;
+      }
+
+      /* feedback message */
+      .game-feedback {
+        min-height: 3.5em;
+        display: flex;
+        align-items: center;
+        gap: 1em;
+      }
+
+      .feedback-text {
+        font-family: "PP Neue World", serif;
+        font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+        font-weight: 200;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        line-height: 1.2;
+        opacity: 0;
+        transform: translateY(8px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .feedback-text.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .feedback-text.success { color: #000; }
+      .feedback-text.try-again { color: #000; }
+
+      .reset-btn {
+        margin-top: 2em;
+        padding: 0.85em 2em;
+        background: transparent;
+        color: #000;
+        border: 2px solid #000;
+        font-family: "Timmons NY", sans-serif;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        cursor: pointer;
+        opacity: 0;
+        pointer-events: none;
+        transition: background 0.25s, color 0.25s, opacity 0.4s;
+      }
+
+      .reset-btn.visible { opacity: 1; pointer-events: auto; }
+      .reset-btn:hover { background: #000; color: #ebdc0b; }
+
+      /* ── Footer ───────────────────────────────────── */
+      .about-footer {
+        background: #000;
+        padding: 2em;
+        text-align: center;
+        font-family: "Timmons NY", sans-serif;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: rgba(235,220,11,0.4);
+      }
+
+      .about-footer a {
+        color: #ebdc0b;
+        text-decoration: none;
+        transition: opacity 0.2s;
+      }
+
+      .about-footer a:hover { opacity: 0.6; }
+
+      /* ── Responsive ───────────────────────────────── */
+      @media (max-width: 768px) {
+        .about-hero { grid-template-columns: 1fr; }
+        .hero-photo { min-height: 55vw; }
+        .hero-text { padding: 2em 1.5em; }
       }
     </style>
   </head>
   <body>
+
+    <!-- nav -->
+    <nav class="about-nav">
+      <a href="./index.html">← Back</a>
+      <a href="./index.html#projects">My Work</a>
+    </nav>
+
+    <!-- hero -->
+    <section class="about-hero">
+      <div class="hero-photo">
+        <img src="./assets/banff.jpg" alt="Michelle Yao in Banff" />
+      </div>
+      <div class="hero-text">
+        <p class="hero-label">About</p>
+        <h1 class="hero-name">Michelle<br>Yao</h1>
+        <p class="hero-tagline">
+          Software Engineering student at the University of Waterloo.
+          I build things that sit at the intersection of technology, creativity, and impact.
+        </p>
+      </div>
+    </section>
+
+    <!-- about body -->
+    <div class="about-body">
+      <p class="section-label">A bit about me</p>
+      <p class="about-intro">
+        I'm a builder at heart — whether it's crafting robots, training ML models, or shipping hackathon projects
+        at 3am. I care about creating experiences that feel human, and I'm always chasing the next thing
+        that makes me think <em>"wait, that's actually really cool."</em>
+      </p>
+
+      <p class="section-label">Interests</p>
+      <div class="interests-grid">
+        <div class="interest-item">
+          <!-- <span class="interest-icon">🤖</span> -->
+          <span class="interest-name">AI &amp; Robotics</span>
+          <span class="interest-desc">Building systems that perceive and act in the real world</span>
+        </div>
+        <div class="interest-item">
+          <!-- <span class="interest-icon">🏔️</span> -->
+          <span class="interest-name">Outdoors</span>
+          <span class="interest-desc">Hiking, skiing, and finding mountains to explore</span>
+        </div>
+        <div class="interest-item">
+          <!-- <span class="interest-icon">🎯</span> -->
+          <span class="interest-name">Precision Sports</span>
+          <span class="interest-desc">Competitive rifle shooting — yes, really</span>
+        </div>
+        <!-- <div class="interest-item">
+          <span class="interest-icon">✈️</span>
+          <span class="interest-name">Travel</span>
+          <span class="interest-desc">Always planning the next adventure</span>
+        </div> -->
+        <div class="interest-item">
+          <!-- <span class="interest-icon">💻</span> -->
+          <span class="interest-name">Hackathons</span>
+          <span class="interest-desc">One idea, ship something real</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="section-divider" style="max-width:900px; margin: 0 auto 5em; border-top: 1px solid rgba(0,0,0,0.15);" />
+
+    <!-- 2 truths and a lie -->
+    <section class="game-section">
+      <div class="game-header">
+        <p class="game-subtitle">Interactive</p>
+        <h2 class="game-title">2 Truths<br>&amp; a Lie</h2>
+      </div>
+
+      <p class="game-instruction">
+        One of these is a lie. Can you spot it? Pick the statement you think is false.
+      </p>
+
+      <div class="statements" id="statements">
+        <button class="statement-btn" data-index="0">
+          I fell asleep on the bus and ended up getting the police to drive me home.
+        </button>
+        <button class="statement-btn" data-index="1">
+          I broke a bone 2 years ago skiing down a black diamond slope.
+        </button>
+        <button class="statement-btn" data-index="2">
+          I've won multiple medals in rifle shooting competitions.
+        </button>
+      </div>
+
+      <div class="game-feedback">
+        <p class="feedback-text" id="feedback-text"></p>
+      </div>
+
+      <button class="reset-btn" id="reset-btn">Play again ↺</button>
+    </section>
+
+    <!-- footer -->
+    <footer class="about-footer">
+      <a href="./index.html">← Michelle Yao's Portfolio</a>
+    </footer>
+
+    <script>
+      // ── 2 Truths and a Lie ─────────────────────────
+      // Statement index 1 (broke a bone skiing) is the lie
+      const LIE_INDEX = 1;
+
+      const buttons  = Array.from(document.querySelectorAll(".statement-btn"));
+      const feedback = document.getElementById("feedback-text");
+      const resetBtn = document.getElementById("reset-btn");
+
+      let attempts = 0;
+      let solved   = false;
+
+      const messages = {
+        correct: [
+          "You got it! 🎉 I've never broken a bone — I'm tougher than I look.",
+          "Correct! ✓ The skiing injury? Never happened. I'm still in one piece.",
+        ],
+        firstWrong: [
+          "Not quite... but you still have one more guess!",
+          "Hmm, that one's actually true! One more try.",
+        ],
+        secondWrong: "That's actually true too! The lie was statement #2 — I've never broken a bone (knock on wood).",
+      };
+
+      function rand(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+      function showFeedback(text, type) {
+        feedback.className = "feedback-text " + type;
+        feedback.textContent = text;
+        requestAnimationFrame(() => feedback.classList.add("visible"));
+      }
+
+      function lockAll() {
+        buttons.forEach(btn => { btn.disabled = true; });
+      }
+
+      function handlePick(btn) {
+        if (solved || btn.disabled) return;
+        const index = parseInt(btn.dataset.index, 10);
+        attempts++;
+
+        if (index === LIE_INDEX) {
+          // ── correct ──
+          solved = true;
+          lockAll();
+          btn.classList.add("correct");
+          // mark truths subtly
+          buttons.forEach(b => {
+            if (parseInt(b.dataset.index, 10) !== LIE_INDEX) b.classList.add("reveal-truth");
+          });
+          showFeedback(rand(messages.correct), "success");
+          resetBtn.classList.add("visible");
+
+        } else if (attempts === 1) {
+          // ── first wrong guess ──
+          btn.classList.add("wrong");
+          btn.disabled = true;
+          showFeedback(rand(messages.firstWrong), "try-again");
+
+        } else {
+          // ── second wrong guess — game over ──
+          solved = true;
+          lockAll();
+          btn.classList.add("wrong");
+          // reveal the lie
+          buttons[LIE_INDEX].classList.add("correct");
+          buttons.forEach(b => {
+            const i = parseInt(b.dataset.index, 10);
+            if (i !== LIE_INDEX && !b.classList.contains("wrong")) b.classList.add("reveal-truth");
+          });
+          showFeedback(messages.secondWrong, "try-again");
+          resetBtn.classList.add("visible");
+        }
+      }
+
+      buttons.forEach(btn => btn.addEventListener("click", () => handlePick(btn)));
+
+      resetBtn.addEventListener("click", () => {
+        attempts = 0;
+        solved   = false;
+        buttons.forEach(btn => {
+          btn.disabled = false;
+          btn.className = "statement-btn";
+        });
+        feedback.className = "feedback-text";
+        feedback.textContent = "";
+        resetBtn.classList.remove("visible");
+      });
+    </script>
   </body>
 </html>
