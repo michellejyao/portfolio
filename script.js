@@ -103,9 +103,9 @@ document.getElementById("Resume").addEventListener("click", function () {
   window.open("", "_blank");
 });
 
-document.getElementById("experience-link").addEventListener("click", function () {
-  window.location.href = "./experience.html";
-});
+// document.getElementById("experience-link").addEventListener("click", function () {
+//   window.location.href = "./experience.html";
+// });
 
 document.getElementById("about-me-link").addEventListener("click", function () {
   window.location.href = "./about.html";
